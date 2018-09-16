@@ -113,6 +113,7 @@ public class MobileSignalController extends SignalController<
     private static final String SHOW_VOWIFI_ICON = "show_vowifi_icon";
 
     private boolean mShow4gForLte;
+    private boolean mDataDisabledIcon;
 
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
@@ -195,7 +196,18 @@ public class MobileSignalController extends SignalController<
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.SHOW_FOURG_ICON), false,
                     this, UserHandle.USER_ALL);
-            updateSettings();
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.DATA_DISABLED_ICON), false,
+                    this, UserHandle.USER_ALL);
+           updateSettings();
+        }
+
+        /*
+         *  @hide
+         */
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+             updateSettings();
         }
 
          /*
@@ -234,6 +246,14 @@ public class MobileSignalController extends SignalController<
                 break;
         }
     }
+    private void updateSettings() {
+        mDataDisabledIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.DATA_DISABLED_ICON, 1,
+                UserHandle.USER_CURRENT) == 1;
+
+        mapIconSets();
+        updateTelephony();
+   }
 
     public void setConfiguration(Config config) {
         mConfig = config;
@@ -727,7 +747,7 @@ public class MobileSignalController extends SignalController<
         mCurrentState.roaming = isRoaming();
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
-        } else if (isDataDisabled() && !mConfig.alwaysShowDataRatIcon) {
+        } else if (isDataDisabled() && mDataDisabledIcon/*!mConfig.alwaysShowDataRatIcon*/) {
             if (mSubscriptionInfo.getSubscriptionId()
                     != mDefaults.getDefaultDataSubId()) {
                 mCurrentState.iconGroup = TelephonyIcons.NOT_DEFAULT_DATA;
