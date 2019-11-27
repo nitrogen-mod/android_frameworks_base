@@ -5082,6 +5082,13 @@ public final class Settings {
         public static final String SHOW_FOURG_ICON = "show_fourg_icon";
 
         /**
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
+        private static final Validator USE_OLD_MOBILETYPE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5198,6 +5205,7 @@ public final class Settings {
             SHOW_LOCKSCREEN_MEDIA_ART,
             QS_SHOW_BRIGHTNESS_ICON,
             FORCE_SHOW_NAVBAR,
+            USE_OLD_MOBILETYPE,
         };
 
         /**
@@ -5372,11 +5380,12 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_LOCKSCREEN_MEDIA_ART);
             PRIVATE_SETTINGS.add(QS_SHOW_BRIGHTNESS_ICON);
             PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
+            PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
         }
 
         /**
          * These are all public system settings
-         *
+          *
          * All settings in {@link SETTINGS_TO_BACKUP} array *must* have a non-null validator,
          * otherwise they won't be restored.
          *
@@ -5523,6 +5532,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_LOCKSCREEN_MEDIA_ART, SHOW_LOCKSCREEN_MEDIA_ART_VALIDATOR);
             VALIDATORS.put(QS_SHOW_BRIGHTNESS_ICON, QS_SHOW_BRIGHTNESS_ICON_VALIDATOR);
             VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
+            VALIDATORS.put(USE_OLD_MOBILETYPE, USE_OLD_MOBILETYPE_VALIDATOR);
         }
 
         /**
