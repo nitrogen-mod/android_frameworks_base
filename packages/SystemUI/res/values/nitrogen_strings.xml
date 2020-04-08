@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 <!--  Copyright (C) 2014-2016 The Nitrogen Project
 
   This program is free software: you can redistribute it and/or modify
@@ -112,4 +112,7 @@
     <string name="applock_locked">&#160;is Locked.</string>
     <string name="applock_fingerprint">&#160;or your fingerprint to unlock.</string>
     <string name="applock_locked_notification">App is locked</string>
+
+    <!-- Alerting notification header label -->
+    <string name="notification_section_header_alerting">Alerting notifications</string>
 </resources>
