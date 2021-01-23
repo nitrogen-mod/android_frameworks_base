@@ -107,6 +107,9 @@
     <string name="status_bar_battery">Battery</string>
     <string name="status_bar_volte">VoLTE</string>
     <string name="status_bar_vowifi">VoWiFi</string>
+    <string name="status_bar_camera">Camera</string>
+    <string name="status_bar_location">Location</string>
+    <string name="status_bar_microphone">Microphone</string>
 
     <!-- App lock -->
     <string name="applock_locked">&#160;is Locked.</string>
